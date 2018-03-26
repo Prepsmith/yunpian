@@ -4,6 +4,7 @@ require 'yunpian/request'
 module Yunpian
   SEND_GATEWAY    = 'http://yunpian.com/v1/sms/send.json'
   ACCOUNT_GATEWAY = 'http://yunpian.com/v1/user/get.json'
+  SHORTEN_URL_GATEWAY = 'http://yunpian.com/v2/short_url/shorten.json'
 
   @timeout = 5
 
@@ -30,6 +31,10 @@ module Yunpian
 
     def account_info
       Request.new(ACCOUNT_GATEWAY, apikey: Yunpian.apikey).perform
+    end
+
+    def shorten_url(url)
+      Request.new(SHORTEN_URL_GATEWAY, long_url: url, apikey: Yunpian.apikey).perform
     end
   end
 
